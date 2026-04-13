@@ -467,19 +467,15 @@ OpenSearch ping status: True
 # Default Monitoring Configuration
 
 Polling interval:
-
 60 seconds
 
 Log lookback window:
-
 5 minutes
 
 Log fetch size:
-
 100 logs
 
 Alert cooldown:
-
 1800 seconds
 
 ---
@@ -584,5 +580,3 @@ Use:
 # Summary
 
 Developed an end-to-end AI-driven log monitoring and observability pipeline using Docker, Jenkins, Fluent Bit, and OpenSearch to centralize application and CI/CD logs; integrated a Python-based AI agent to automate failure detection, root-cause analysis, and real-time alerting with suggested fixes.
-
----
