@@ -516,6 +516,8 @@ Expected:
   ]
  } ```
 
+---
+
 # AWS Deployment (Free Tier)
 
 This project can run on low-cost infrastructure.
