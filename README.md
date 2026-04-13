@@ -1,4 +1,5 @@
 
+
 # Task Manager AI Log Monitoring & Observability Platform
 
 ![AWS](https://img.shields.io/badge/AWS-EC2-orange)
@@ -29,7 +30,7 @@
 * AWS Deployment (Free Tier)
 * Security Best Practices
 * Future Improvements
-* Resume Summary
+* Summary
 
 ---
 
@@ -51,7 +52,7 @@ It then uses a **Python-based AI monitoring agent** to:
 * Rank possible causes
 * Send real-time alerts with suggested fixes
 
-The goal of the project is to:
+The goal of this project is to:
 
 * Improve system reliability
 * Reduce manual troubleshooting
@@ -62,14 +63,14 @@ The goal of the project is to:
 
 # Problem Statement
 
-In production systems, logs are scattered across:
+In production environments, logs are distributed across:
 
 * Application services
 * Containers
 * CI/CD pipelines
 * Infrastructure
 
-When failures occur, engineers typically:
+When failures occur, engineers typically need to:
 
 * Search logs manually
 * Identify errors
@@ -87,8 +88,6 @@ that automatically detects failures and recommends fixes.
 ---
 
 # Architecture Diagram
-
-Copy directly into README.
 
 ```mermaid
 flowchart LR
@@ -191,6 +190,7 @@ Responsible for:
 ## Containers
 
 * Docker
+* Docker Compose
 
 ## Logging
 
@@ -218,12 +218,13 @@ Responsible for:
 
 ```text
 task-manager-observability-platform/
+│
 ├── task-manager-app/
 │   ├── backend/
 │   ├── frontend/
-│   |── docker-compose.yml
-│   |-JenkinsFile
-|
+│   ├── docker-compose.yml
+│   └── Jenkinsfile
+│
 ├── ai-agent/
 │   ├── app.py
 │   ├── analyzers/
@@ -305,7 +306,7 @@ This ensures:
 
 # Environment Variables
 
-## Backend .env
+## Backend `.env`
 
 ```env
 PORT=5000
@@ -320,7 +321,7 @@ MAIL_PASS=your_email_app_password
 
 ---
 
-## OpenSearch .env
+## OpenSearch `.env`
 
 ```env
 OPENSEARCH_INITIAL_ADMIN_PASSWORD=admin_password
@@ -328,7 +329,7 @@ OPENSEARCH_INITIAL_ADMIN_PASSWORD=admin_password
 
 ---
 
-## AI Agent .env
+## AI Agent `.env`
 
 ```env
 OPENSEARCH_HOST=YOUR_OPENSEARCH_HOST
@@ -337,19 +338,24 @@ OPENSEARCH_USER=admin
 OPENSEARCH_PASSWORD=YOUR_PASSWORD
 OPENSEARCH_USE_SSL=true
 OPENSEARCH_VERIFY_CERTS=false
+
 OPENSEARCH_DOCKER_INDEX=task-deploy-docker-*
 OPENSEARCH_JENKINS_INDEX=jenkins-logs-*
 OPENSEARCH_INCIDENT_INDEX=ai-agent-incidents
+
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your_email@gmail.com
 SMTP_PASSWORD=your_app_password
+
 ALERT_FROM=your_email@gmail.com
 ALERT_TO=recipient1@gmail.com,recipient2@gmail.com
+
 POLL_INTERVAL_SECONDS=60
 LOG_FETCH_SIZE=100
 LOG_LOOKBACK_MINUTES=5
 ALERT_COOLDOWN_SECONDS=1800
+
 GROQ_API_KEY=your_api_key
 GROQ_BASE_URL=https://api.groq.com/openai/v1
 GROQ_MODEL=llama-3.1-8b-instant
@@ -366,6 +372,7 @@ Install:
 
 * Git
 * Docker
+* Docker Compose
 * Python
 * Node.js
 * Jenkins
@@ -388,21 +395,15 @@ cd task-manager-observability-platform
 cd task-manager-app/backend
 
 npm install
-```
-
-Run backend:
-
-```bash
 npm run dev
 ```
 
-Install frontend:
+Frontend:
 
 ```bash
 cd ../frontend
 
 npm install
-
 npm start
 ```
 
@@ -454,11 +455,10 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Expected:
+Expected output:
 
 ```text
 AI monitoring agent started
-
 OpenSearch ping status: True
 ```
 
@@ -467,15 +467,19 @@ OpenSearch ping status: True
 # Default Monitoring Configuration
 
 Polling interval:
+
 60 seconds
 
 Log lookback window:
+
 5 minutes
 
 Log fetch size:
+
 100 logs
 
 Alert cooldown:
+
 1800 seconds
 
 ---
@@ -499,7 +503,9 @@ Expected:
 ---
 
 # Example Root Cause Ranking
-``` {
+
+```json
+{
   "top_possible_causes": [
     {
       "cause": "MongoDB password invalid",
@@ -514,34 +520,34 @@ Expected:
       "score": 0.28
     }
   ]
- } ```
+}
+```
 
 ---
 
 # AWS Deployment (Free Tier)
 
-This project can run on low-cost infrastructure.
+Recommended infrastructure:
 
-Recommended:
-
-3 EC2 instances
+* 3 EC2 instances
 
 Instance type:
 
-t2.micro
-t3.micro
-t4g.micro
+* t2.micro
+* t3.micro
+* t4g.micro
 
 Configuration:
 
-1 vCPU
-1 GB RAM
+* 1 vCPU
+* 1 GB RAM
 
 Suitable for:
 
-Learning
-Portfolio projects
-Interview demonstrations
+* Learning
+* Portfolio projects
+* DevOps interviews
+* Proof of concept environments
 
 ---
 
@@ -549,17 +555,17 @@ Interview demonstrations
 
 Never commit:
 
-.env files
-passwords
-API keys
-tokens
-private keys
+* `.env` files
+* passwords
+* API keys
+* tokens
+* private keys
 
 Use:
 
-Environment variables
-Secrets manager
-Credential store
+* Environment variables
+* Secrets manager
+* Credential store
 
 ---
 
@@ -580,4 +586,3 @@ Credential store
 Developed an end-to-end AI-driven log monitoring and observability pipeline using Docker, Jenkins, Fluent Bit, and OpenSearch to centralize application and CI/CD logs; integrated a Python-based AI agent to automate failure detection, root-cause analysis, and real-time alerting with suggested fixes.
 
 ---
-
