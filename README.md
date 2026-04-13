@@ -1,14 +1,9 @@
-Below is a **complete, professional, copy-paste ready README** with an **architecture diagram included**.
-You can paste this directly into your `README.md` in the repo.
-It is written in a **production-style, DevOps/Cloud portfolio standard**, aligned with your real project.
-
----
 
 # Task Manager AI Log Monitoring & Observability Platform
 
 ![AWS](https://img.shields.io/badge/AWS-EC2-orange)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
-![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-red)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI/CD-red)
 ![OpenSearch](https://img.shields.io/badge/OpenSearch-Logging-green)
 ![Python](https://img.shields.io/badge/Python-AI%20Agent-yellow)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
@@ -20,16 +15,18 @@ It is written in a **production-style, DevOps/Cloud portfolio standard**, aligne
 * Project Overview
 * Problem Statement
 * Architecture Diagram
+* System Components
 * Features
 * Technologies Used
 * Repository Structure
 * How the System Works
 * AI Agent Workflow
 * LLM Integration
-* AWS Deployment (Free Tier Friendly)
+* Environment Variables
 * Setup and Installation
 * Running the Project
 * Testing the System
+* AWS Deployment (Free Tier)
 * Security Best Practices
 * Future Improvements
 * Resume Summary
@@ -54,35 +51,44 @@ It then uses a **Python-based AI monitoring agent** to:
 * Rank possible causes
 * Send real-time alerts with suggested fixes
 
-The goal is to reduce manual troubleshooting time, improve system reliability, and automate incident response.
+The goal of the project is to:
+
+* Improve system reliability
+* Reduce manual troubleshooting
+* Automate incident detection
+* Enable faster root-cause analysis
 
 ---
 
 # Problem Statement
 
-In production environments, logs are distributed across multiple systems:
+In production systems, logs are scattered across:
 
-* Application logs
-* Container logs
-* CI/CD pipeline logs
-* Infrastructure logs
+* Application services
+* Containers
+* CI/CD pipelines
+* Infrastructure
 
-When failures occur, engineers typically need to manually:
+When failures occur, engineers typically:
 
-* Search logs
+* Search logs manually
 * Identify errors
 * Diagnose root causes
 * Notify stakeholders
 
-This process is slow, repetitive, and error-prone.
+This process is slow and inefficient.
 
-This project solves that problem by building a **centralized AI-assisted monitoring platform** that automatically detects incidents and recommends fixes.
+This project solves that problem by building a:
+
+**centralized AI-assisted monitoring platform**
+
+that automatically detects failures and recommends fixes.
 
 ---
 
 # Architecture Diagram
 
-Copy-paste ready for GitHub.
+Copy directly into README.
 
 ```mermaid
 flowchart LR
@@ -97,7 +103,7 @@ subgraph EC2_2["EC2 Instance 2 — Application & Logging"]
 Docker[Docker Containers\nTask Manager App]
 FluentBit[Fluent Bit\nLog Collector]
 OpenSearch[OpenSearch\nLog Storage]
-Dashboards[OpenSearch Dashboards\nVisualization]
+Dashboards[OpenSearch Dashboards]
 end
 
 subgraph EC2_3["EC2 Instance 3 — AI Monitoring"]
@@ -118,9 +124,7 @@ Agent --> SMTP
 
 ---
 
-# High-Level Architecture
-
-The platform runs across **three AWS EC2 instances**.
+# System Components
 
 ## Jenkins EC2
 
@@ -158,7 +162,7 @@ Responsible for:
 
 # Features
 
-Centralized log monitoring
+Centralized logging
 Automated incident detection
 Real-time alerting
 Root-cause analysis
@@ -210,7 +214,7 @@ MongoDB
 Python
 Requests
 SMTP
-LLM API (Groq / OpenAI)
+LLM API
 
 ---
 
@@ -243,8 +247,6 @@ fluent-bit/
 fluent-bit.conf
 parsers.conf
 
-docs/
-
 README.md
 .gitignore
 ```
@@ -253,33 +255,22 @@ README.md
 
 # How the System Works
 
-Step 1 — Developer pushes code to GitHub
-
-Step 2 — Jenkins pipeline builds application
-
-Step 3 — Docker containers are deployed
-
-Step 4 — Logs are generated
-
-Step 5 — Fluent Bit collects logs
-
-Step 6 — Logs are stored in OpenSearch
-
-Step 7 — AI agent fetches recent logs
-
-Step 8 — Incident is detected
-
-Step 9 — Root cause is analyzed
-
-Step 10 — Alert is sent
+1. Developer pushes code to GitHub
+2. Jenkins pipeline builds application
+3. Docker containers are deployed
+4. Logs are generated
+5. Fluent Bit collects logs
+6. Logs are stored in OpenSearch
+7. AI agent fetches recent logs
+8. Incident is detected
+9. Root cause is analyzed
+10. Alert is sent
 
 ---
 
 # AI Agent Workflow
 
-The monitoring agent runs continuously.
-
-Each cycle performs:
+Each monitoring cycle performs:
 
 1. Check OpenSearch health
 2. Fetch recent logs
@@ -294,38 +285,15 @@ Each cycle performs:
 
 ---
 
-# Example Root Cause Ranking
-
-```json
-{
-  "top_possible_causes": [
-    {
-      "cause": "MongoDB password invalid",
-      "score": 0.91
-    },
-    {
-      "cause": "User lacks permissions",
-      "score": 0.73
-    },
-    {
-      "cause": "Network connectivity issue",
-      "score": 0.28
-    }
-  ]
-}
-```
-
----
-
 # LLM Integration
 
-The AI agent integrates with external LLM APIs to enhance failure analysis.
+The AI agent integrates with external LLM APIs.
 
 Supported providers:
 
-Groq
-OpenAI
-Local LLM
+* Groq
+* OpenAI
+* Local LLM
 
 The LLM is used only when:
 
@@ -333,42 +301,95 @@ The LLM is used only when:
 * failure is complex
 * additional reasoning is required
 
-This design ensures:
+This ensures:
 
-Fast detection
-Low cost
-High reliability
+* Fast detection
+* Low cost
+* High reliability
 
 ---
 
-# AWS Deployment (Free Tier Friendly)
+# Environment Variables
 
-This project is designed to run on low-cost infrastructure.
+## Backend .env
 
-Typical setup:
+```env
+PORT=5000
 
-Jenkins EC2
-Deploy EC2
-AI Agent EC2
+MONGO_URI=mongodb://username:password@host:27017/db
 
-Recommended instance type:
+JWT_SECRET=your_jwt_secret
 
-t2.micro
-t3.micro
-t4g.micro
+JWT_REFRESH_SECRET=your_refresh_secret
 
-Recommended configuration:
+ACCESS_EXPIRE=15m
 
-1 vCPU
-1 GB RAM
-Linux
+REFRESH_EXPIRE=7d
 
-This setup is suitable for:
+MAIL_USER=your_email@gmail.com
 
-Learning
-Portfolio projects
-Interview demonstrations
-Proof of concept environments
+MAIL_PASS=your_email_app_password
+```
+
+---
+
+## OpenSearch .env
+
+```env
+OPENSEARCH_INITIAL_ADMIN_PASSWORD=admin_password
+```
+
+---
+
+## AI Agent .env
+
+```env
+OPENSEARCH_HOST=YOUR_OPENSEARCH_HOST
+
+OPENSEARCH_PORT=9200
+
+OPENSEARCH_USER=admin
+
+OPENSEARCH_PASSWORD=YOUR_PASSWORD
+
+OPENSEARCH_USE_SSL=true
+
+OPENSEARCH_VERIFY_CERTS=false
+
+OPENSEARCH_DOCKER_INDEX=task-deploy-docker-*
+
+OPENSEARCH_JENKINS_INDEX=jenkins-logs-*
+
+OPENSEARCH_INCIDENT_INDEX=ai-agent-incidents
+
+SMTP_HOST=smtp.gmail.com
+
+SMTP_PORT=587
+
+SMTP_USER=your_email@gmail.com
+
+SMTP_PASSWORD=your_app_password
+
+ALERT_FROM=your_email@gmail.com
+
+ALERT_TO=recipient1@gmail.com,recipient2@gmail.com
+
+POLL_INTERVAL_SECONDS=60
+
+LOG_FETCH_SIZE=100
+
+LOG_LOOKBACK_MINUTES=5
+
+ALERT_COOLDOWN_SECONDS=1800
+
+GROQ_API_KEY=your_api_key
+
+GROQ_BASE_URL=https://api.groq.com/openai/v1
+
+GROQ_MODEL=llama-3.1-8b-instant
+
+GROQ_TIMEOUT_SECONDS=30
+```
 
 ---
 
@@ -390,29 +411,19 @@ Jenkins
 # Clone Repository
 
 ```bash
-git clone https://github.com/your-username/task-manager-observability-platform.git
+git clone https://github.com/karthik-51/task-manager-observability-platform.git
 
 cd task-manager-observability-platform
 ```
 
 ---
 
-# Task Manager Setup
-
-## Backend
+# Install Task Manager
 
 ```bash
 cd task-manager-app/backend
 
 npm install
-```
-
-Create `.env`
-
-```env
-PORT=5000
-MONGO_URI=your_mongo_uri
-JWT_SECRET=your_secret
 ```
 
 Run backend:
@@ -421,9 +432,7 @@ Run backend:
 npm run dev
 ```
 
----
-
-## Frontend
+Install frontend:
 
 ```bash
 cd ../frontend
@@ -435,7 +444,7 @@ npm start
 
 ---
 
-# OpenSearch Setup
+# Install OpenSearch
 
 ```bash
 cd opensearch
@@ -451,7 +460,7 @@ curl -k -u admin:password https://localhost:9200
 
 ---
 
-# Fluent Bit Setup
+# Install Fluent Bit
 
 ```bash
 cd fluent-bit
@@ -461,7 +470,7 @@ docker compose up -d
 
 ---
 
-# AI Agent Setup
+# Install AI Agent
 
 ```bash
 cd ai-agent
@@ -473,16 +482,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create `.env`
-
-```env
-OPENSEARCH_HOST=localhost
-OPENSEARCH_PORT=9200
-SMTP_USER=email
-SMTP_PASSWORD=password
-GROQ_API_KEY=api_key
-```
-
 ---
 
 # Running the AI Agent
@@ -491,10 +490,11 @@ GROQ_API_KEY=api_key
 python app.py
 ```
 
-Expected output:
+Expected:
 
 ```text
 AI monitoring agent started
+
 OpenSearch ping status: True
 ```
 
@@ -522,9 +522,7 @@ Alert cooldown:
 
 # Testing the System
 
-Trigger failures to test monitoring.
-
-Examples:
+Trigger failures:
 
 Wrong database password
 Missing environment variable
@@ -532,11 +530,38 @@ Jenkins build failure
 Docker container crash
 Invalid SMTP credentials
 
-Expected result:
+Expected:
 
 Incident detected
 Root cause analyzed
 Alert sent
+
+---
+
+# AWS Deployment (Free Tier)
+
+This project can run on low-cost infrastructure.
+
+Recommended:
+
+3 EC2 instances
+
+Instance type:
+
+t2.micro
+t3.micro
+t4g.micro
+
+Configuration:
+
+1 vCPU
+1 GB RAM
+
+Suitable for:
+
+Learning
+Portfolio projects
+Interview demonstrations
 
 ---
 
@@ -560,25 +585,19 @@ Credential store
 
 # Future Improvements
 
-Slack notifications
+Slack alerts
 Auto remediation
 Dashboard analytics
 Incident trends
-Kubernetes support
+Kubernetes deployment
 Role-based alerts
 Predictive monitoring
 
 ---
 
-# Resume Summary
+# Summary
 
 Developed an end-to-end AI-driven log monitoring and observability pipeline using Docker, Jenkins, Fluent Bit, and OpenSearch to centralize application and CI/CD logs; integrated a Python-based AI agent to automate failure detection, root-cause analysis, and real-time alerting with suggested fixes.
 
 ---
 
-If you want next, I can generate:
-
-* Draw.io architecture diagram file
-* System design explanation for interviews
-* Kubernetes version of this architecture
-* Production-ready enterprise architecture
