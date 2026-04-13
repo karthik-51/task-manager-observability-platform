@@ -484,19 +484,37 @@ Alert cooldown:
 
 Trigger failures:
 
-Wrong database password
-Missing environment variable
-Jenkins build failure
-Docker container crash
-Invalid SMTP credentials
+* Wrong database password
+* Missing environment variable
+* Jenkins build failure
+* Docker container crash
+* Invalid SMTP credentials
 
 Expected:
 
-Incident detected
-Root cause analyzed
-Alert sent
+* Incident detected
+* Root cause analyzed
+* Alert sent
 
 ---
+
+# Example Root Cause Ranking
+``` {
+  "top_possible_causes": [
+    {
+      "cause": "MongoDB password invalid",
+      "score": 0.91
+    },
+    {
+      "cause": "User lacks permissions",
+      "score": 0.73
+    },
+    {
+      "cause": "Network connectivity issue",
+      "score": 0.28
+    }
+  ]
+ } ```
 
 # AWS Deployment (Free Tier)
 
