@@ -9,7 +9,7 @@ def to_bool(value: str) -> bool:
 
 
 class Settings:
-    OPENSEARCH_HOST = os.getenv("OPENSEARCH_HOST", "172.31.15.80")
+    OPENSEARCH_HOST = os.getenv("OPENSEARCH_HOST", "Opensearch Ec2 Ip Address")
     OPENSEARCH_PORT = int(os.getenv("OPENSEARCH_PORT", "9200"))
     OPENSEARCH_USER = os.getenv("OPENSEARCH_USER", "admin")
     OPENSEARCH_PASSWORD = os.getenv("OPENSEARCH_PASSWORD", "")

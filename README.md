@@ -162,20 +162,17 @@ Responsible for:
 
 # Features
 
-Centralized logging
-Automated incident detection
-Real-time alerting
-Root-cause analysis
-Smart root-cause ranking
-AI-assisted failure investigation
-Incident grouping
-Alert cooldown logic
-Historical incident storage
-Multi-EC2 distributed architecture
-CI/CD pipeline monitoring
-Low-cost deployment support
-Secure credential handling
-LLM integration support
+* Centralized logging
+* Automated incident detection
+* Real-time alerting
+* Root-cause analysis
+* Smart root-cause ranking
+* AI-assisted failure investigation
+* Incident grouping
+* Alert cooldown logic
+* CI/CD pipeline monitoring
+* Secure credential handling
+* LLM integration support
 
 ---
 
@@ -183,38 +180,37 @@ LLM integration support
 
 ## Cloud
 
-AWS EC2
-Linux
+* AWS EC2
+* Linux
 
 ## CI/CD
 
-Jenkins
-GitHub
+* Jenkins
+* GitHub
 
 ## Containers
 
-Docker
-Docker Compose
+* Docker
 
 ## Logging
 
-Fluent Bit
-OpenSearch
-OpenSearch Dashboards
+* Fluent Bit
+* OpenSearch
+* OpenSearch Dashboards
 
 ## Application
 
-Node.js
-Express.js
-React
-MongoDB
+* Node.js
+* Express.js
+* React
+* MongoDB
 
 ## AI / Monitoring
 
-Python
-Requests
-SMTP
-LLM API
+* Python
+* Requests
+* SMTP
+* LLM API
 
 ---
 
@@ -222,33 +218,31 @@ LLM API
 
 ```text
 task-manager-observability-platform/
-
-task-manager-app/
-backend/
-frontend/
-docker-compose.yml
-
-ai-agent/
-app.py
-analyzers/
-clients/
-services/
-config/
-utils/
-requirements.txt
-
-jenkins/
-Jenkinsfile
-
-opensearch/
-docker-compose.yml
-
-fluent-bit/
-fluent-bit.conf
-parsers.conf
-
-README.md
-.gitignore
+├── task-manager-app/
+│   ├── backend/
+│   ├── frontend/
+│   |── docker-compose.yml
+│   |-JenkinsFile
+|
+├── ai-agent/
+│   ├── app.py
+│   ├── analyzers/
+│   ├── clients/
+│   ├── config/
+│   ├── services/
+│   ├── utils/
+│   └── requirements.txt
+│
+├── opensearch/
+│   ├── docker-compose.yml
+│   └── opensearch-config/
+│
+├── fluent-bit/
+│   ├── fluent-bit.conf
+│   └── parsers.conf
+│
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -315,19 +309,12 @@ This ensures:
 
 ```env
 PORT=5000
-
 MONGO_URI=mongodb://username:password@host:27017/db
-
 JWT_SECRET=your_jwt_secret
-
 JWT_REFRESH_SECRET=your_refresh_secret
-
 ACCESS_EXPIRE=15m
-
 REFRESH_EXPIRE=7d
-
 MAIL_USER=your_email@gmail.com
-
 MAIL_PASS=your_email_app_password
 ```
 
@@ -345,49 +332,27 @@ OPENSEARCH_INITIAL_ADMIN_PASSWORD=admin_password
 
 ```env
 OPENSEARCH_HOST=YOUR_OPENSEARCH_HOST
-
 OPENSEARCH_PORT=9200
-
 OPENSEARCH_USER=admin
-
 OPENSEARCH_PASSWORD=YOUR_PASSWORD
-
 OPENSEARCH_USE_SSL=true
-
 OPENSEARCH_VERIFY_CERTS=false
-
 OPENSEARCH_DOCKER_INDEX=task-deploy-docker-*
-
 OPENSEARCH_JENKINS_INDEX=jenkins-logs-*
-
 OPENSEARCH_INCIDENT_INDEX=ai-agent-incidents
-
 SMTP_HOST=smtp.gmail.com
-
 SMTP_PORT=587
-
 SMTP_USER=your_email@gmail.com
-
 SMTP_PASSWORD=your_app_password
-
 ALERT_FROM=your_email@gmail.com
-
 ALERT_TO=recipient1@gmail.com,recipient2@gmail.com
-
 POLL_INTERVAL_SECONDS=60
-
 LOG_FETCH_SIZE=100
-
 LOG_LOOKBACK_MINUTES=5
-
 ALERT_COOLDOWN_SECONDS=1800
-
 GROQ_API_KEY=your_api_key
-
 GROQ_BASE_URL=https://api.groq.com/openai/v1
-
 GROQ_MODEL=llama-3.1-8b-instant
-
 GROQ_TIMEOUT_SECONDS=30
 ```
 
@@ -399,12 +364,11 @@ GROQ_TIMEOUT_SECONDS=30
 
 Install:
 
-Git
-Docker
-Docker Compose
-Python
-Node.js
-Jenkins
+* Git
+* Docker
+* Python
+* Node.js
+* Jenkins
 
 ---
 
@@ -503,19 +467,15 @@ OpenSearch ping status: True
 # Default Monitoring Configuration
 
 Polling interval:
-
 60 seconds
 
 Log lookback window:
-
 5 minutes
 
 Log fetch size:
-
 100 logs
 
 Alert cooldown:
-
 1800 seconds
 
 ---
@@ -585,13 +545,13 @@ Credential store
 
 # Future Improvements
 
-Slack alerts
-Auto remediation
-Dashboard analytics
-Incident trends
-Kubernetes deployment
-Role-based alerts
-Predictive monitoring
+* Slack alerts
+* Auto remediation
+* Dashboard analytics
+* Incident trends
+* Kubernetes deployment
+* Role-based alerts
+* Predictive monitoring
 
 ---
 
